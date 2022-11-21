@@ -1,0 +1,15 @@
+{
+  "name": "koshambi",
+  "version": "1.0.0",
+  "description": "Koshambi_project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
+  }
+}
