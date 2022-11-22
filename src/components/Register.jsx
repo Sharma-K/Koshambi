@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import './Register.css'
 import axios from "axios";
 
@@ -10,10 +11,10 @@ const Register = () => {
         password: ""
     })
 
-    const changeHandler =(event) => {
+    const changeHandler = (event) => {
 
-        const { value, name} = event.target;
-        
+        const { value, name } = event.target;
+
 
 
         setUser({
@@ -24,35 +25,44 @@ const Register = () => {
     }
 
 
-    function submitHandler(event){
+    function submitHandler(event) {
         event.preventDefault();
-       
-        axios.post('http://localhost:5000/register',user )
-         .then(res => console.log(res));
+
+        axios.post('http://localhost:5000/register', user)
+            .then(res => console.log(res));
     }
     return (
-        <div className="reg-con">
-            
-        <form action="" onSubmit={submitHandler}>
        
-<div className="register-container">
-<h2>Register</h2>
-    <div>
-            <label htmlFor="username">Enter username</label>
-            <input type="text" id="username" name="username"  placeholder="username" value={user.username} onChange={changeHandler} />
-            </div>
-            <div>
-            <label htmlFor="email">Enter email</label>
-            <input type="email" id="email" name="email"  placeholder="email" value={user.email} onChange={changeHandler} />
-            </div>
-            <div>
-            <label htmlFor="password">Enter password</label>
-            <input type="password" id="password" name="password" placeholder="password" value={user.password} onChange={changeHandler}  />
-            </div>
-            <button className="regb" >Submit</button>
-            </div>
-        </form>
-        </div>
+
+            
+            <form action="" onSubmit={submitHandler}>
+
+                <div className="reg-con">
+               
+                <div className="reg-img"></div>
+                <div className="reg-container">
+                    <h2>Register</h2>
+                    <div>
+                        <label htmlFor="username">Enter username</label>
+                        <input type="text" id="username" name="username" placeholder="username" value={user.username} onChange={changeHandler} />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Enter email</label>
+                        <input type="email" id="email" name="email" placeholder="email" value={user.email} onChange={changeHandler} />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Enter password</label>
+                        <input type="password" id="password" name="password" placeholder="password" value={user.password} onChange={changeHandler} />
+                    </div>
+                    <button className="regb" >Submit</button>
+                       
+                <div>
+                    Already have an account? <Link to="/">Login</Link>
+                 </div>
+                </div>
+                </div>
+            </form>
+      
     )
 }
 
