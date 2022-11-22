@@ -56,6 +56,24 @@ async function main() {
   });
   
 }
+
+
+app.post('/login',passport.authenticate('local', { failureRedirect: 'http://localhost:3000/'}), async(req, res) => {
+
+  try
+  {
+  
+    res.send('successfully loggedin')
+    
+  }
+  catch(err){
+   
+    res.send('not authorized')
+   
+  }
+})
+
+
 app.post('/register', async(req, res) => {
  
 

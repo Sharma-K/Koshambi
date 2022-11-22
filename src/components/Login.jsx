@@ -1,10 +1,18 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import './Login.css'
+import Home from "./Home";
 
 
-const Login = () => {
+const Login = (props) => {
+  
+    
+
+    const [checked, setChecked] = useState(false);
 
     const [user, setUser] = useState({
         username: "",
@@ -25,15 +33,51 @@ const Login = () => {
     }
 
 
-    function submitHandler(event){
+  async function submitHandler(event){
         event.preventDefault();
        
-        axios.post('http://localhost:5000/login',user )
-         .then(res => console.log(res));
+    await axios.post('http://localhost:5000/login',user)
+         .then(res => {
+        
+            if(res.data==="successfully loggedin")
+            {
+                setChecked(true);
+
+            
+                toast.success("welcome back", {
+                    autoClose:1000,
+                    theme: "colored",
+                    position: "top-center"
+
+                });
+              
+            }
+            else{
+                toast.error('Username or password is incorrect',{
+                    autoClose:1000,
+                    theme: "colored",
+                    position: "top-center"
+                })
+            }
+           
+        }
+            );
+
+
     }
     return (
+
+    
+    
+    <>
+
+    {checked && <Home />}
+    {!checked &&
         <form action="" onSubmit={submitHandler}>
+<ToastContainer />
+
  <div className="log-con">
+ 
                
                <div className="log-img"></div>
                <div className="log-container">
@@ -54,7 +98,9 @@ const Login = () => {
                 </div>
                </div>
                </div>
-        </form>
+               
+        </form>}
+        </>
     )
 }
 
