@@ -94,7 +94,8 @@ app.post('/register', async(req, res) => {
     else
     {
         // req.flash('sucess', 'Welcome ');
-    res.redirect('/');
+    // res.redirect('/');
+    res.send('success');
     }
 });
  
