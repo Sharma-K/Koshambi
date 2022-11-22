@@ -5,36 +5,41 @@ const mongoose = require('mongoose');
 const User = require('./model/user');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+
 const session = require('express-session');
+const MongoDBStore = require('connect-mongo');
+const dbUrl = 'mongodb://localhost:27017/Koshambi';
+const store =  MongoDBStore.create({
+  mongoUrl: dbUrl,
+  crypto:{
+  secret: 'koshambisecret'
+  },
+  touchAfter: 24*3600
+});
+store.on('error', function(e){
+  console.log('Session store error', e);
+})
+const sessionConfig = {
+  store,
+  name: 'session',
+  secret: 'koshambisecret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      httpOnly: true,
+      secure: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}
 
-// const store =  MongoDBStore.create({
-//   mongoUrl: dbUrl,
-//   crypto:{
-//   secret: 'thisshouldbeabettersecret!'
-//   },
-//   touchAfter: 24*3600
-// });
-// const sessionConfig = {
-//   store,
-//   name: 'session',
-//   secret: 'thisshouldbeabettersecret!',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: {
-//       httpOnly: true,
-//       // secure: true,
-//       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-//       maxAge: 1000 * 60 * 60 * 24 * 7
-//   }
-// }
-
-// app.use(session(sessionConfig));
+app.use(session(sessionConfig));
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 app.use(cors());
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // how do we store the user in the session
 passport.deserializeUser(User.deserializeUser()) // how to get user out of the data
@@ -45,7 +50,7 @@ main().catch(err => console.log(err));
 
 async function main() {
     console.log('database connected');
-  await mongoose.connect('mongodb://localhost:27017/Koshambi',{
+  await mongoose.connect(dbUrl,{
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
@@ -56,24 +61,24 @@ app.post('/register', async(req, res) => {
 
   console.log('this is inside register api');
 
-  const { email, name, password } = req.body;
+  const { email, username, password } = req.body;
 
-  console.log('email', name);
-  const user = new User({ email });
+  const user = new User({ email, username });
+
 
   const registeredUser = await User.register(user, password);
  
-//   req.login(registeredUser, err =>{
-//     if(err) {
-//         console.log(err);
-//         return next(err);
-//     }
-//     else
-//     {
-//         req.flash('sucess', 'Welcome ');
-//     res.redirect('/posts');
-//     }
-// });
+  req.login(registeredUser, err =>{
+    if(err) {
+        console.log('this is the error',err);
+        return next(err);
+    }
+    else
+    {
+        // req.flash('sucess', 'Welcome ');
+    res.redirect('/');
+    }
+});
  
 })
 
