@@ -1,0 +1,35 @@
+.register-container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5em;
+    text-align: center;
+    font-size: 15px;
+    width: fit-content;
+    height: auto;
+    padding: 5em;
+    gap: 1em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+   
+}
+
+.regb{
+    margin-top: 30px;
+    width: 80%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 1.25rem;
+    border: none;
+    transition: all 1ms ease-in;
+    /* color: white; */
+}
+
+.regb:hover{
+    cursor: pointer;
+    background-color: rgb(83, 83, 217);
+    color: black;
+    font-weight: bold   ;
+}
+
