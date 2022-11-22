@@ -57,8 +57,16 @@ async function main() {
   
 }
 
+app.get('/database', async(req, res)=>{
 
-app.post('/login',passport.authenticate('local', { failureRedirect: 'http://localhost:3000/'}), async(req, res) => {
+  const users = await User.find({});
+ 
+  res.send(users);
+
+})
+
+
+app.post('/login',passport.authenticate('local'), async(req, res) => {
 
   try
   {

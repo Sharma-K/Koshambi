@@ -33,22 +33,22 @@ const Register = () => {
         event.preventDefault();
  
 
-    try
-    {
-        const result = await (await axios.post('http://localhost:5000/register',user)).data;
+     if(user.name!="" && user.email!="" && user.password!="")
+        {
+            const result = await (await axios.post('http://localhost:5000/register',user)).data;
 
     localStorage.setItem('currentUser', JSON.stringify(result));
     window.location.href='/home'
     
     }
-    catch(error)
+   else
     {
-                     toast.error('Username or password is incorrect',{
+                     toast.error('Invalid Input',{
                     autoClose:1000,
                     theme: "colored",
                     position: "top-center"
                 })
-        console.log(error);
+        
     }
 
 

@@ -2,7 +2,10 @@
     width: 800px;
     height: 400px;
     background-color: white;
-    display: flex;
-    justify-content: center;
+  text-align: center;
     border-radius: 2em;
+}
+
+.users-lists{
+    margin-top: 3px;
 }

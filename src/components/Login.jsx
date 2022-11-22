@@ -18,7 +18,6 @@ const Login = (props) => {
         }
     })
 
-    const [checked, setChecked] = useState(false);
 
     const [user, setUser] = useState({
         username: "",
@@ -41,32 +40,15 @@ const Login = (props) => {
 
   async function submitHandler(event){
         event.preventDefault();
-       
-    // await axios.post('http://localhost:5000/login',user)
-    //      .then(res => {
-        
-    //         if(res.data==="successfully loggedin")
-    //         {
-    //             setChecked(true); 
-              
-    //         }
-    //         else{
-    //             toast.error('Username or password is incorrect',{
-    //                 autoClose:1000,
-    //                 theme: "colored",
-    //                 position: "top-center"
-    //             })
-    //         }
-           
-    //     }
-    //         );
+ 
 
     try
     {
         const result = await (await axios.post('http://localhost:5000/login',user)).data;
-
-    localStorage.setItem('currentUser', JSON.stringify(result));
-    window.location.href='/home'
+        
+        localStorage.setItem('currentUser', JSON.stringify(result));
+        window.location.href='/home'
+    
     
     }
     catch(error)
@@ -78,6 +60,8 @@ const Login = (props) => {
                 })
         console.log(error);
     }
+    
+    
 
 
     }
