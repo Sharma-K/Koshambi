@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import './Register.css'
 import axios from "axios";
+import Home from "./Home";
 
 const Register = () => {
+
+    const [checked, setChecked] = useState(false);
 
     const [user, setUser] = useState({
         username: "",
@@ -29,19 +33,45 @@ const Register = () => {
         event.preventDefault();
 
         axios.post('http://localhost:5000/register', user)
-            .then(res => console.log(res));
+        .then(res => {
+        
+            if(res.data==="success")
+            {
+
+                setChecked(true);
+                toast.success("successfully registered", {
+                    autoClose:1000,
+                    theme: "colored",
+                    position: "top-center"
+        
+                });
+              
+            }
+            else{
+                toast.error("already registered", {
+                    autoClose:1000,
+                    theme: "colored",
+                    position: "top-center"
+
+                })
+            }
+        }
+        );
     }
     return (
        
+        <>
+        {checked && <Home />}
 
+        {!checked &&
             
             <form action="" onSubmit={submitHandler}>
-
+  <ToastContainer />
                 <div className="reg-con">
                
                 <div className="reg-img"></div>
                 <div className="reg-container">
-                    <h2>Register</h2>
+                    <h1>Register</h1>
                     <div>
                         <label htmlFor="username">Enter username</label>
                         <input type="text" id="username" name="username" placeholder="username" value={user.username} onChange={changeHandler} />
@@ -57,11 +87,12 @@ const Register = () => {
                     <button className="regb" >Submit</button>
                        
                 <div>
-                    Already have an account? <Link to="/">Login</Link>
+                    Already have an account? <Link to="/" className="link">Login</Link>
                  </div>
                 </div>
                 </div>
-            </form>
+            </form>}
+            </>
       
     )
 }

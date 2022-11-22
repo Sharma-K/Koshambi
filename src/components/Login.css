@@ -1,5 +1,5 @@
 .log-con{
-    height: fit-content;
+    height: 80vh;
     width: fit-content;
     display: flex;
     background-color: white;
@@ -10,6 +10,19 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
  
  }
+
+ .log-img{
+   font-size: 0;
+     text-decoration: none;
+     /* background-color: green; */
+     background-image: url('https://i.pinimg.com/564x/28/87/6d/28876d808fd91031081e72f8ab1a6ef4.jpg');
+     background-size:cover;
+     background-repeat: no-repeat;
+     width: 25vw;
+     height: 80vh;
+     border-radius: 6em;
+}
+
  
  .log-container {
      
@@ -33,25 +46,21 @@
      /* margin-bottom: 10px; */
      /* gap: 0.5em; */
  }
- 
- .log-container input{
-     border: none;
-     outline: none;
-     margin-top: 10px;
+ .link{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(34,99,131);
  }
  
- .log-img{
-     font-size: 0;
-     text-decoration: none;
-     /* background-color: green; */
-     background-image: url('https://i.pinimg.com/564x/28/87/6d/28876d808fd91031081e72f8ab1a6ef4.jpg');
-     background-size:cover;
-     background-repeat: no-repeat;
-     width: 25vw;
-     height: 80vh;
-     border-radius: 6em;
-     
-     
+ .log-container input{
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    background-color: lightgray;
+    padding: 5px;
+    width: 300px;
+    border-radius: 0.5em;
+    padding-left: 10px;
  }
  
  .regb {

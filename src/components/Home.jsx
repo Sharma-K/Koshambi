@@ -1,4 +1,5 @@
 import { ToastContainer, toast } from "react-toastify";
+import './Home.css'
 import React, {useEffect} from "react";
 const Home = () => {
 
@@ -12,9 +13,14 @@ const Home = () => {
     },[])
 
     return (
-        <div>
+<div className="home-body">
+
+     Logout
+
+        <div className="home-con">
             <ToastContainer />
             This is home page
+        </div>
         </div>
     )
     

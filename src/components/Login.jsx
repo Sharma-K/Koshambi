@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
@@ -11,6 +11,12 @@ import Home from "./Home";
 const Login = (props) => {
   
     
+    useEffect(()=> {
+        if(localStorage.getItem('currentUser'))
+        {
+            window.location.href='/home'
+        }
+    })
 
     const [checked, setChecked] = useState(false);
 
@@ -36,32 +42,42 @@ const Login = (props) => {
   async function submitHandler(event){
         event.preventDefault();
        
-    await axios.post('http://localhost:5000/login',user)
-         .then(res => {
+    // await axios.post('http://localhost:5000/login',user)
+    //      .then(res => {
         
-            if(res.data==="successfully loggedin")
-            {
-                setChecked(true);
-
-            
-                toast.success("welcome back", {
-                    autoClose:1000,
-                    theme: "colored",
-                    position: "top-center"
-
-                });
+    //         if(res.data==="successfully loggedin")
+    //         {
+    //             setChecked(true); 
               
-            }
-            else{
-                toast.error('Username or password is incorrect',{
+    //         }
+    //         else{
+    //             toast.error('Username or password is incorrect',{
+    //                 autoClose:1000,
+    //                 theme: "colored",
+    //                 position: "top-center"
+    //             })
+    //         }
+           
+    //     }
+    //         );
+
+    try
+    {
+        const result = await (await axios.post('http://localhost:5000/login',user)).data;
+
+    localStorage.setItem('currentUser', JSON.stringify(result));
+    window.location.href='/home'
+    
+    }
+    catch(error)
+    {
+                     toast.error('Username or password is incorrect',{
                     autoClose:1000,
                     theme: "colored",
                     position: "top-center"
                 })
-            }
-           
-        }
-            );
+        console.log(error);
+    }
 
 
     }
@@ -71,7 +87,7 @@ const Login = (props) => {
     
     <>
 
-    {checked && <Home />}
+    {/* {checked && <Home />} */}
     {!checked &&
         <form action="" onSubmit={submitHandler}>
 <ToastContainer />
@@ -81,7 +97,7 @@ const Login = (props) => {
                
                <div className="log-img"></div>
                <div className="log-container">
-                   <h2>Login</h2>
+                   <h1>Login</h1>
                    <div>
                        <label htmlFor="username">Enter username</label>
                        <input type="text" id="username" name="username" placeholder="username" value={user.username} onChange={changeHandler} />
@@ -94,7 +110,7 @@ const Login = (props) => {
                    <button className="regb" >Log In</button>
                       
                <div>
-                   New to Account? <Link to="/register">Register Here</Link>
+                   New to Account? <Link to="/register" className="link">Register Here</Link>
                 </div>
                </div>
                </div>

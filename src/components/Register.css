@@ -34,10 +34,21 @@
     /* gap: 0.5em; */
 }
 
+.link{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(34,99,131);
+ }
+
 .reg-container input{
     border: none;
     outline: none;
     margin-top: 10px;
+    background-color: lightgray;
+    padding: 5px;
+    width: 300px;
+    border-radius: 0.5em;
+    padding-left: 10px;
 }
 
 .reg-img{
@@ -48,7 +59,7 @@
     background-size:cover;
     background-repeat: no-repeat;
     width: 25vw;
-    height: 80vh;
+    height: 90vh;
     border-radius: 6em;
     
     
