@@ -29,39 +29,34 @@ const Register = () => {
     }
 
 
-    function submitHandler(event) {
+    async function submitHandler(event){
         event.preventDefault();
+ 
 
-        axios.post('http://localhost:5000/register', user)
-        .then(res => {
-        
-            if(res.data==="success")
-            {
+    try
+    {
+        const result = await (await axios.post('http://localhost:5000/register',user)).data;
 
-                setChecked(true);
-                toast.success("successfully registered", {
+    localStorage.setItem('currentUser', JSON.stringify(result));
+    window.location.href='/home'
+    
+    }
+    catch(error)
+    {
+                     toast.error('Username or password is incorrect',{
                     autoClose:1000,
                     theme: "colored",
                     position: "top-center"
-        
-                });
-              
-            }
-            else{
-                toast.error("already registered", {
-                    autoClose:1000,
-                    theme: "colored",
-                    position: "top-center"
-
                 })
-            }
-        }
-        );
+        console.log(error);
+    }
+
+
     }
     return (
        
         <>
-        {checked && <Home />}
+       
 
         {!checked &&
             

@@ -3,6 +3,19 @@ import './Home.css'
 import React, {useEffect} from "react";
 const Home = () => {
 
+
+    const  logoutHandler = () => {
+        try
+         {
+            localStorage.removeItem('currentUser')
+            window.location.href='/'
+
+         }
+         catch(e){
+            console.log(e);
+         }
+    }
+
     useEffect(() =>{
         toast.success("welcome", {
             autoClose:1000,
@@ -13,15 +26,20 @@ const Home = () => {
     },[])
 
     return (
-<div className="home-body">
+        <>
+        <div className="home-body">
+     
+     <button onClick={logoutHandler}>Logout</button>
 
-     Logout
+     <div className="Logout"></div>
 
         <div className="home-con">
+
             <ToastContainer />
-            This is home page
+            Dashboard
         </div>
         </div>
+        </>
     )
     
 }

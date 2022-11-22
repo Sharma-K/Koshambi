@@ -87,8 +87,7 @@ const Login = (props) => {
     
     <>
 
-    {/* {checked && <Home />} */}
-    {!checked &&
+ 
         <form action="" onSubmit={submitHandler}>
 <ToastContainer />
 
@@ -115,7 +114,7 @@ const Login = (props) => {
                </div>
                </div>
                
-        </form>}
+        </form>
         </>
     )
 }

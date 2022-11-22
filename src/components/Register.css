@@ -5,7 +5,7 @@
    background-color: white;
    align-items: center;
    justify-content: center;
-   border-radius: 0.5em;
+   border-radius: 12px;
    /* flex: 1; */
    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
@@ -60,7 +60,8 @@
     background-repeat: no-repeat;
     width: 25vw;
     height: 90vh;
-    border-radius: 6em;
+    border-top-left-radius: 12px;
+     border-bottom-left-radius: 12px;
     
     
 }
