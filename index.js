@@ -13,11 +13,11 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
 const port = process.env.PORT || 5000;
 const dbUrl = process.env.DB_URL;
-if(process.env.NODE_ENV !== "production")
+if(process.env.NODE_ENV === "production")
 {
   
    app.use('/',express.static('client/build'));
-   app.get('/' , (req , res)=>{
+   app.get('*' , (req , res)=>{
 
     res.sendFile(path.resolve(__dirname  , 'client/build/index.html'))
 
