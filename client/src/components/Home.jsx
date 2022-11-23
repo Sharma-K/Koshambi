@@ -56,12 +56,13 @@ const Home = () => {
      <div className="Logout"></div>
 
         <div className="home-con">
-            {loader && <Loader/> }
+            
 
 <div className="head">
          <div>Name</div>
          <div>Email</div>
          </div>
+         {loader && <Loader/> }
          {usersLists.map((user)=> {
             return (
                 <div className="user" key={user._id}>
