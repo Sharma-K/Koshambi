@@ -13,6 +13,14 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
 const port = process.env.PORT || 5000;
 const dbUrl = process.env.DB_URL;
+
+app.get('/database', async(req, res)=>{
+
+  const users = await User.find({});
+ 
+  res.send(users);
+
+})
 if(process.env.NODE_ENV === "production")
 {
   
@@ -73,13 +81,6 @@ async function main() {
   
 }
 
-app.get('/database', async(req, res)=>{
-
-  const users = await User.find({});
- 
-  res.send(users);
-
-})
 
 
 app.post('/login',passport.authenticate('local'), async(req, res) => {
