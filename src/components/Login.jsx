@@ -58,7 +58,7 @@ const Login = (props) => {
                     theme: "colored",
                     position: "top-center"
                 })
-        console.log(error);
+        
     }
     
     

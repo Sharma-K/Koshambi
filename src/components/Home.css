@@ -1,11 +1,68 @@
-.home-con{
-    width: 800px;
-    height: 400px;
+.home-body{
+    width: 600px;
+    height: fit-content;
     background-color: white;
   text-align: center;
-    border-radius: 2em;
+    border-radius: 0.2em;
+    padding: 1rem;
+    font-size: 40px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    
 }
 
-.users-lists{
-    margin-top: 3px;
+
+.head{
+  margin-top: 2em;
+  display: flex;
+   font-size: 20px;
+}
+.head div{
+  width: 50%;
+  text-align: left;
+  padding-left: 10px;
+  background-color:  rgb(34,99,131);
+  border-radius: 0.2em;
+  color: white;
+}
+
+
+.user{
+
+  margin-top: 0.5em;
+    display: flex;
+   
+    border-radius: 1em;
+    font-size: 10px;
+    
+}
+
+.user div{
+  text-align: left;
+  width: 50%;
+  padding: 10px;
+  background-color: rgb(246, 199, 180);
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+}
+
+.user div:hover{
+  background-color: rgb(251, 192, 169);
+  cursor: pointer;
+}
+
+
+
+.logb{
+  margin-top: 30px;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 1.25rem;
+  border: none;
+  transition: all 1ms ease-in;
+  background-color: rgb(252,181,152);
+}
+.logb:hover{
+  cursor: pointer;
 }

@@ -3,20 +3,26 @@ import './Home.css'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 const Home = () => {
+  
 
     const [usersLists, setUsers] = useState([]);
 
-    useEffect(async()=>{
+    useEffect(()=>{
 
-       
-        const users = await (await axios.get('http://localhost:5000/database')).data;
+       async function fetch()
+        { const users = await (await axios.get('http://localhost:5000/database')).data;
         setUsers(users);
-        toast.success("welcome", {
+       
+            toast.success("welcome", {
             autoClose:1000,
             theme: "colored",
             position: "top-center"
 
         });
+      
+    
+    }
+    fetch();
     
     },[])
 
@@ -37,28 +43,30 @@ const Home = () => {
 
     return (
         <>
+         <ToastContainer />
         <div className="home-body">
-        <ToastContainer />
+       
+        <div className="title"> Dashboard</div>
+     <button onClick={logoutHandler} className="logb">Logout</button>
      
-     <button onClick={logoutHandler}>Logout</button>
-
      <div className="Logout"></div>
 
         <div className="home-con">
 
-           <div className="title">
-            Dashboard
-            </div>
-            <div className="users-lists">
-                {usersLists.map(user => {
+<div className="head">
+         <div>Name</div>
+         <div>Email</div>
+         </div>
+         {usersLists.map((user)=> {
+            return (
+                <div className="user" key={user._id}>
+                 
+                 <div className="name">{user.username}</div>
+                 <div className="email">{user.email}</div>
 
-                    return ( 
-                        <div>
-                            {user.username}
-                        </div>
-                    )
-                })}
-            </div>
+                </div>
+            )
+         })}
 
         </div>
         </div>
