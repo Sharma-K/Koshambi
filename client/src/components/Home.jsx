@@ -2,15 +2,18 @@ import { ToastContainer, toast } from "react-toastify";
 import './Home.css'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import Loader from "./Loader";
 const Home = () => {
   
 
+    const [loader, setLoader] = useState(true);
     const [usersLists, setUsers] = useState([]);
 
     useEffect(()=>{
 
        async function fetch()
         { const users = await (await axios.get('/database')).data;
+        setLoader(false);
         setUsers(users);
        
             toast.success("welcome", {
@@ -44,6 +47,7 @@ const Home = () => {
     return (
         <>
          <ToastContainer />
+
         <div className="home-body">
        
         <div className="title"> Dashboard</div>
@@ -52,6 +56,7 @@ const Home = () => {
      <div className="Logout"></div>
 
         <div className="home-con">
+            {loader && <Loader/> }
 
 <div className="head">
          <div>Name</div>
