@@ -11,7 +11,6 @@ const Home = () => {
 
        async function fetch()
         { const users = await (await axios.get('/database')).data;
-        console.log(users);
         setUsers(users);
        
             toast.success("welcome", {
