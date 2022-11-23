@@ -4,6 +4,12 @@
   "description": "Koshambi_project",
   "main": "index.js",
   "scripts": {
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node index.js",
+    "client": "cd client && npm start",
+    "dev":"concurrently -n 'index,client' -c 'red,green' \"nodemon index.js\" \"npm run client\"",
     "test": "node index.js"
   },
   "author": "",
