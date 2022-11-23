@@ -125,9 +125,6 @@ app.post('/register', async(req, res) => {
  
 })
 
-app.get('/', (req, res)=>{
-    res.send('This is the home page');
-})
 
 app.listen(port, ()=>{
     console.log(`listening to port ${port}`);
