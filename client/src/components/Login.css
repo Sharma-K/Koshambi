@@ -83,3 +83,13 @@
      color: black;
      /* font-weight: bold; */
  }
+
+ @media only screen and (max-width: 650px) {
+    .log-img{
+        display: none;
+    }
+    .log-container{
+        width: 220px;
+    }
+    
+ }

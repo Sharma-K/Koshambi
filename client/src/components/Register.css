@@ -84,3 +84,12 @@
     color: black;
     /* font-weight: bold; */
 }
+@media only screen and (max-width: 650px) {
+    .reg-img{
+        display: none;
+    }
+    .reg-container{
+        width: 220px;
+    }
+    
+ }
