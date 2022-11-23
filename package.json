@@ -9,13 +9,14 @@
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node index.js",
     "client": "cd client && npm start",
-    "dev":"concurrently -n 'index,client' -c 'red,green' \"nodemon index.js\" \"npm run client\"",
+    "dev": "concurrently -n 'index,client' -c 'red,green' \"nodemon index.js\" \"npm run client\"",
     "test": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "mongoose": "^6.7.2",
