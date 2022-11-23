@@ -5,11 +5,18 @@ import axios from "axios";
 import Loader from "./Loader";
 const Home = () => {
   
+    
 
     const [loader, setLoader] = useState(true);
     const [usersLists, setUsers] = useState([]);
 
     useEffect(()=>{
+
+
+        if(!window.localStorage.getItem('currentUser'))
+        {
+            window.location.href='/';
+        }
 
        async function fetch()
         { const users = await (await axios.get('/database')).data;
