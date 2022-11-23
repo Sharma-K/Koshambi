@@ -44,7 +44,7 @@ const Login = (props) => {
 
     try
     {
-        const result = await (await axios.post('http://localhost:5000/login',user)).data;
+        const result = await (await axios.post('/login',user)).data;
         
         localStorage.setItem('currentUser', JSON.stringify(result));
         window.location.href='/home'

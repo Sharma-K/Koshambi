@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !== "production")
+{
+    require('dotenv').config();
+}
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -8,7 +13,9 @@ const LocalStrategy = require('passport-local');
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
-const dbUrl = 'mongodb://localhost:27017/Koshambi';
+const port = process.env.PORT || 5000;
+const dbUrl = process.env.DB_URL;
+
 const store =  MongoDBStore.create({
   mongoUrl: dbUrl,
   crypto:{
@@ -50,7 +57,9 @@ main().catch(err => console.log(err));
 
 async function main() {
     console.log('database connected');
+  
   await mongoose.connect(dbUrl,{
+
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
@@ -113,6 +122,6 @@ app.get('/', (req, res)=>{
     res.send('This is the home page');
 })
 
-app.listen(5000, ()=>{
-    console.log('listening to port 3000');
+app.listen(port, ()=>{
+    console.log(`listening to port ${port}`);
 })

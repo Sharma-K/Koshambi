@@ -35,7 +35,7 @@ const Register = () => {
 
      if(user.name!="" && user.email!="" && user.password!="")
         {
-            const result = await (await axios.post('http://localhost:5000/register',user)).data;
+            const result = await (await axios.post('/register',user)).data;
 
     localStorage.setItem('currentUser', JSON.stringify(result));
     window.location.href='/home'

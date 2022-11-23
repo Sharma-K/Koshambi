@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(()=>{
 
        async function fetch()
-        { const users = await (await axios.get('http://localhost:5000/database')).data;
+        { const users = await (await axios.get('/database')).data;
         setUsers(users);
        
             toast.success("welcome", {
